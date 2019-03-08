@@ -1,0 +1,31 @@
+import UIKit
+
+//Importar libreria de googlemaps
+import GoogleMaps
+import GooglePlaces
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        //Agregar el servicio de maps a traves de una clave (Api_key)
+        GMSServices.provideAPIKey("AIzaSyD56JzHX7p9_WU6iAwvufPvhm2T_05FjcA")
+        GMSPlacesClient.provideAPIKey("AIzaSyD56JzHX7p9_WU6iAwvufPvhm2T_05FjcA")
+        
+        // Posicionar el sitio al abrirse el mapa a traves de una longitud y una latitud
+        let camera = GMSCameraPosition.camera(withLatitude: 19.3930193, longitude: -99.2807104, zoom: 10)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        view = mapView
+        
+        //Creacion de un marcador
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: 19.3930193, longitude: -99.2807104)
+        marker.title = "Pin"
+        marker.snippet = "Distancia"
+        marker.icon = UIImage (named: "pin")
+        marker.map = mapView
+    }
+
+}
